@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { shallow, mount } from 'enzyme';
 import { renderToJson } from 'enzyme-to-json';
-import Toast from '../app/components/Toast2';
+import Toast from '../src/components/Toast2';
 
 class Test extends Component {
   constructor(props) {
