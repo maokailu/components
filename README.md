@@ -2,6 +2,8 @@
 A react component library
 
 ## 文件目录
+
+```
 ├─build 项目构建目录
 ├─src 项目构建目录
 │  ├─demos 练习demo
@@ -23,3 +25,4 @@ A react component library
 │  ├─main.jsx
 │  ├─main.scss
 └─tests 测试
+```
