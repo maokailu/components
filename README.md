@@ -2,8 +2,8 @@
 A react component library
 
 ## 文件目录
-├─build 项目构建目录│
-└─src
+├─build 项目构建目录
+├─src 项目构建目录
 │  ├─demos 练习demo
 │  ├─utils 采用 ES6+ 写的组件
 │  │  ├─2048
