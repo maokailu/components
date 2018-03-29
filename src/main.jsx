@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import './utils/Adaptation';
-import Game from './utils/2048';
+import { App, appRoot } from './utils/toast-portals';
 
 render(
-  <Game />, document.getElementById('root')
+  <App />, document.getElementById('app-root')
 );

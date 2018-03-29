@@ -30,7 +30,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { showModal: false };
-    
     this.handleShow = this.handleShow.bind(this);
     this.handleHide = this.handleHide.bind(this);
   }
@@ -38,7 +37,7 @@ class App extends React.Component {
   handleShow() {
     this.setState({ showModal: true });
   }
-  
+
   handleHide() {
     this.setState({ showModal: false });
   }
@@ -56,7 +55,7 @@ class App extends React.Component {
     return (
       <div className="app">
         This div has overflow: hidden.
-        <button onClick={this.handleShow}>Show modal</button>
+        <span onClick={this.handleShow}>Show modal</span>
         {modal}
       </div>
     );

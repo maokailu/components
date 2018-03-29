@@ -31,15 +31,11 @@ class App extends React.Component {
     super(props);
     this.state = {
       showModal: false,
-      text: this.props.text,
-      time: this.props.time
+      text: this.props.text || 'there is a message',
+      time: this.props.time || 2000
     };
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleHide = this.handleHide.bind(this);
   }
-
-  handleShow(e) {
+  handleShow = e => {
     e.stopPropagation();
     if (!this.closeTimer) {
       this.setState({ showModal: true });
@@ -51,14 +47,7 @@ class App extends React.Component {
     }, this.state.time);
   }
 
-  handleHide() {
-    if (!this.closeTimer) {
-      // 使用者未开启Toast而直接调用该方法时的提示
-      this.setState({
-        text: '请先开启Toast'
-      });
-      return;
-    }
+  handleHide = () =>{
     this.setState({ showModal: false });
     this.closeTimer = null;
   }
@@ -67,19 +56,14 @@ class App extends React.Component {
     const modal = this.state.showModal ? (
       <Modal>
         <div className="modal">
-          <div>this is the toast text</div>
+          this is the toast text
         </div>
       </Modal>
     ) : null;
 
     return (
-      // click the page to hide the toast
-      <div className="app" style={{ width: '370px', background: 'yellow' }}>
-        <span style={{ fontSize: '24px', lineHeight: '30px', background: 'white' }}>
-        Click the button to show the toasts</span><br/>
-        <span style={{ fontSize: '100px', lineHeight: '48px' }}>20:30</span><br/>
-        <span style={{ fontSize: '24px', lineHeight: '30px' }}>PVG</span>
-        {/* <button onClick={this.handleShow}>{this.state.text}</button> */}
+      <div className="btn" onClick={this.handleShow}>
+        Click the button to show the toasts
         {modal}
       </div>
     );
@@ -87,3 +71,18 @@ class App extends React.Component {
 }
 
 export { App, appRoot };
+
+//  使用方法
+//  1.在您的html页面新建两个id分别为app-root和modal-root的div
+//  like this:
+//     <div id="root">
+//         <div id="app-root"></div>
+//         <div id="modal-root"></div>
+//     </div>;
+//  2.在您对应的jsx文件中引入toast-portals组件并将它渲染到html中
+// 引用方法：
+// import { App, AppRoot } from './utils/toast-portals';
+// 渲染app-root：
+// render(
+//   <App />, document.getElementById('app-root')
+// );
