@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { App, appRoot } from './utils/toast-portals';
+import App from './utils/back-top';
 
 render(
-  <App />, document.getElementById('app-root')
+  <App />, document.getElementById('root')
 );
