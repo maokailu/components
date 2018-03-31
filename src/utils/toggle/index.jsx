@@ -17,7 +17,9 @@ export default class Toggle extends React.Component {
   }
   render() {
     return (
-      <span className={this.state.toggle ? 'icon-toggle-on':'icon-toggle-off'} onClick={this.toggle}></span>
+      <div className="box">
+        <span className={this.state.toggle ? 'icon-toggle-on' : 'icon-toggle-off'} onClick={this.toggle}></span>
+      </div>
     );
   }
 }
