@@ -9,7 +9,7 @@ export default class Toggle extends React.Component {
   };
   render() {
     return (
-      <div></div>
+      <div>progress</div>
     );
   }
 }
