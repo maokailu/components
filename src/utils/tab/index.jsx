@@ -9,7 +9,7 @@ export default class Tab extends React.Component {
   };
   render() {
     return (
-      <div></div>
+      <div>tab</div>
     );
   }
 }
