@@ -1,16 +1,16 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './utils/tab';
+import App from './utils/carousel';
 
 render(
   <App>
-    <div name="one">
+    <div name="1">
         第一部分
     </div>
-    <div name="two">
+    <div name="2">
         第二部分
     </div>
-    <div name="three">
+    <div name="3">
         第三部分
     </div>
   </App>
