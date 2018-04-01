@@ -9,6 +9,7 @@ export default class Tab extends React.Component {
     current: 0
   };
   componentDidMount() {
+    console.log('test');
     const distance = document.getElementById('flipsnap').offsetWidth / 3;
     this.flipsnap = Flipsnap('#flipsnap', {
       distance: distance,
@@ -71,4 +72,6 @@ export default class Tab extends React.Component {
 //     </div>
 // </App>
 // master
-// merge
+// tab
+// tab
+// tab test
