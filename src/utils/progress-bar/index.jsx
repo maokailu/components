@@ -7,8 +7,8 @@ export default class ProgressBar extends React.Component {
       showArea: true
     };
   }
-
   componentDidMount() {
+    // this.previewFiles([]);
   }
   readFileSize = file => {
     let size = file.size / 1024;
@@ -35,7 +35,13 @@ export default class ProgressBar extends React.Component {
     const files = dt.files;
     this.previewFiles(files);
   }
-  previewFiles = files =>{
+  previewFiles = files => {
+    if (!files) return;
+    // const localFiles = localStorage.getItem(files);
+    // if (localFiles) {
+    //   files = localFiles.contact(files);
+    // }
+    // localStorage.setItem('files', files);
     for (var i = 0; i < files.length; i++) {
       const file = files[i];
       const imageType = /^image\//;
@@ -64,7 +70,7 @@ export default class ProgressBar extends React.Component {
       reader.readAsDataURL(file);
     }
   }
-  change = e => {
+  filesInput = e => {
     const files = e.target.files;
     this.readFileSize(files);
     this.previewFiles(files);
@@ -92,6 +98,7 @@ export default class ProgressBar extends React.Component {
       reader.readAsBinaryString(file);
     }
     // 服务器读取
+    // 今天要写开题报告，这种瞎编的事没有思路啊，明明几句话可以搞定偏偏要凑那么多字 来来去去 还是写代码最得心应手 借此逃避 不好
   }
   render() {
     return (
@@ -99,7 +106,7 @@ export default class ProgressBar extends React.Component {
         <div className="filePicker">
           <label>点击选择文件</label>
           <input id="fileInput" type="file" name="file" multiple="multiple" accept="image/*"
-            onChange={this.change}/>
+            onChange={this.filesInput}/>
         </div>
         <div id="dropbox" className="dropbox" onDragEnter={e => this.dragEnter(e)} onDragOver={e => this.dragOver(e)} onDrop={e => this.drop(e)}>
           {this.state.showArea && <div className="area"></div>}

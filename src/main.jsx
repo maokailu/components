@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './utils/progress-bar';
+import App from './utils/queue-anim';
 
 render(
 //   <App>
