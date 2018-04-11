@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './air-booking';
+import App from './air-booking/list';
+import './resources/global.scss';
+import './main.scss';
 
 render(
 //   <App>

@@ -1,23 +1,31 @@
-/* main.css */
-html {
-  box-sizing: border-box;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-}
+// /* main.css */
+// html {
+//   box-sizing: border-box;
+//   -ms-text-size-adjust: 100%;
+//   -webkit-text-size-adjust: 100%;
+// }
 
-body {
-  margin: 0;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
+// body {
+//   margin: 0;
+//   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+// }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-ul {
-  margin: 0;
-  padding: 0;
+// h1,
+// h2,
+// h3,
+// h4,
+// h5,
+// h6,
+// p,
+// ul {
+//   margin: 0;
+//   padding: 0;
+// }
+
+// @import './resources/global.scss';
+body{
+    background-color: #EFEFF4;
+    margin: 0;
+    padding: 0;
+    font:12px/1.5 Helvetica Neue,Roboto,arial,sans-serif;
 }

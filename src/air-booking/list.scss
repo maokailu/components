@@ -1,0 +1,58 @@
+
+.info{
+    text-align: center;
+    padding: 8px 0;
+    font-size: 12px;
+    color: #1899F2;
+    background: #F2F9FF;
+}
+.box{
+    padding: 15px 16px;
+    background: #FFF;
+    margin-bottom: 8px;
+    .flight-list{
+        padding: 8px;
+        display: flex;
+        font-size: 18px;
+        .time, .city{
+            display: flex;
+            flex-direction: column;
+            margin-right: 20px;
+            span{
+                flex: 1;
+            }
+            :first-child{
+                
+                margin-bottom: 10px;
+            }
+        }
+    }
+    .row1{
+        display: flex;
+        justify-content: space-between;
+        .policy{
+            font-size: 17px;
+            color: #333;
+            line-height: 21px;
+            font-weight: 700;
+        }
+        .details{
+            font-size: 12px;
+            color: #1899f2;
+        }
+
+    }
+    .row2{
+        padding-top: 8px;
+        padding-bottom: 10px;
+        font-size: 12px;
+        color: #1da38a;
+        line-height: 15px;
+        border-bottom: 1px solid #D8D8D8;
+        .icon{
+            margin-right: 4px;
+        }
+
+
+    }
+}
