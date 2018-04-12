@@ -29,7 +29,7 @@
     ],
     "root": true,
     "rules": {
-        "indent": [2, 2],
+        "indent": [2, 4],
         "camelcase": [2, {"properties": "never"}],
         "quotes": [2, "single", {"allowTemplateLiterals": true}],
         "semi": [2, "always"],
