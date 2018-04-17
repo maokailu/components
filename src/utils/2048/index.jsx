@@ -6,19 +6,20 @@ let startX = 0;
 let startY = 0;
 let endX = 0;
 let endY = 0;
-let grid = null;
-let gameOver = true;
+let grid = JSON.parse(localStorage.getItem('grid')) || [];
+let gameOver = false;
 let score = 0;
-let bestScore = 0;
+let bestScore =  localStorage.getItem('bestscore') || 0;
 export default class Game2048 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            grid: []
+            grid: JSON.parse(localStorage.getItem('grid')) || []
         };
     }
 
     componentWillMount() {
+        // this.state.grid.length === 0 && this.initialGrid();
         this.initialGrid();
     }
 
@@ -28,6 +29,8 @@ export default class Game2048 extends React.Component {
     };
     initialGrid = () => {
         grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+        
+        // grid = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
         gameOver = false;
         let cells1 = this.availableCells();
         this.getRandomNum(cells1);
@@ -105,7 +108,7 @@ export default class Game2048 extends React.Component {
             grid: grid
         });
     };
-    // 1.执行多次崩溃 2.逻辑优化代码优化 3.将04改为变量 不一定是4*4的表格
+    // 1.执行多次崩溃 2.逻辑优化代码优化 3.将04改为变量 不一定是4*4的表格 4.修改样式后刷新好几次
     caculateGird = direction => {
         for (let i = 0; i < 4; i++) {
             let j = 0;
@@ -218,21 +221,32 @@ export default class Game2048 extends React.Component {
     };
     render() {
         score > bestScore ? (bestScore = score) : bestScore;
+        localStorage.setItem('bestscore', bestScore);
+        localStorage.setItem('grid', JSON.stringify(this.state.grid));
+        console.log(this.state.grid)
         return (
             <div className="game-container">
                 {
-                    <div className="scores-container">
-                        <div className="score">Score: {score}</div>
-                        <div className="best-score">Best: {bestScore}</div>
-                        <div className="restart" onClick={this.restart}>
-                            Restart
+                    <div>
+                        <div className="heading">
+                            <span className="title">2048</span>
+                            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                <div className="score"><span className="tit">SCORE</span> <span>{score}</span></div>
+                                <div className="best-score"><span className="tit">BEST</span> <span>{bestScore}</span></div>
+                            </div>
+                        </div>
+                        <div className="above-game">
+                            <span className="tit">Join the numbers and get to the 2048 tile!</span>
+                            <div className="restart" onClick={this.restart}>
+                                New Game
+                            </div>
                         </div>
                     </div>
                 }
                 <div
                     className="grid"
-                    onTouchStart={!this.state.gameOver ? this.touchStartHandler : null}
-                    onTouchEnd={!this.state.gameOver ? this.touchEndHandler : null}
+                    onTouchStart={!gameOver ? this.touchStartHandler : null}
+                    onTouchEnd={!gameOver ? this.touchEndHandler : null}
                 >
                     {this.state.grid.map((row, rowIndex) => (
                         <div className="row" key={rowIndex}>
@@ -256,5 +270,5 @@ export default class Game2048 extends React.Component {
 }
 
 // todolists:
-// localstorage
+// localstorage:grid gameover 卡主
 // 动画
