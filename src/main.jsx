@@ -4,7 +4,7 @@ import { render } from 'react-dom';
 import App from './utils/datePicker';
 import './resources/global.scss';
 import './main.scss';
-import './utils/adaptation';
+// import './utils/adaptation';
 
 render(
     //   <App>

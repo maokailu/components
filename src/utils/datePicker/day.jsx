@@ -19,7 +19,7 @@ export default class Day extends React.Component {
         });
         return (
             <td onClick={() => this.clickHandler(index, event)} className={tdStyle}>
-                {day >= 1 && day <= 9 ? '0' + day : day}
+                {day}
             </td>
         );
     }

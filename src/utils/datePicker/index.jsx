@@ -141,13 +141,13 @@ export default class Pagination extends React.Component {
                 <table>
                     <thead>
                         <tr>
-                            <th>日</th>
-                            <th>一</th>
-                            <th>二</th>
-                            <th>三</th>
-                            <th>四</th>
-                            <th>五</th>
-                            <th>六</th>
+                            <th>周日</th>
+                            <th>周一</th>
+                            <th>周二</th>
+                            <th>周三</th>
+                            <th>周四</th>
+                            <th>周五</th>
+                            <th>周六</th>
                         </tr>
                     </thead>
                     <tbody>
