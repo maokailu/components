@@ -9,7 +9,9 @@ let endY = 0;
 let grid = JSON.parse(localStorage.getItem('grid')) || [];
 let gameOver = false;
 let score = 0;
-let bestScore =  localStorage.getItem('bestscore') || 0;
+let bestScore = localStorage.getItem('bestscore') || 0;
+let animX = -1;
+let animY = -1;
 export default class Game2048 extends React.Component {
     constructor(props) {
         super(props);
@@ -29,7 +31,7 @@ export default class Game2048 extends React.Component {
     };
     initialGrid = () => {
         grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-        
+
         // grid = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
         gameOver = false;
         let cells1 = this.availableCells();
@@ -142,6 +144,8 @@ export default class Game2048 extends React.Component {
                             grid[k][i] = 0;
                         } else if (grid[j][i] === grid[k][i]) {
                             grid[j][i] = grid[k][i] * 2;
+                            animX = j;
+                            animY = i;
                             grid[k][i] = 0;
                             score += grid[j][i];
                             break label1;
@@ -155,6 +159,8 @@ export default class Game2048 extends React.Component {
                             grid[i][k] = 0;
                         } else if (grid[i][j] === grid[i][k]) {
                             grid[i][j] = grid[i][k] * 2;
+                            animX = i;
+                            animY = j;
                             grid[i][k] = 0;
                             score += grid[i][j];
                             break label1;
@@ -168,6 +174,8 @@ export default class Game2048 extends React.Component {
                             grid[k][i] = 0;
                         } else if (grid[j][i] === grid[k][i]) {
                             grid[j][i] = grid[k][i] * 2;
+                            animX = j;
+                            animY = i;
                             grid[k][i] = 0;
                             score += grid[j][i];
                             break label1;
@@ -181,6 +189,8 @@ export default class Game2048 extends React.Component {
                             grid[i][k] = 0;
                         } else if (grid[i][j] === grid[i][k]) {
                             grid[i][j] = grid[i][k] * 2;
+                            animX = i;
+                            animY = j;
                             grid[i][k] = 0;
                             score += grid[i][j];
                             break label1;
@@ -223,7 +233,6 @@ export default class Game2048 extends React.Component {
         score > bestScore ? (bestScore = score) : bestScore;
         localStorage.setItem('bestscore', bestScore);
         localStorage.setItem('grid', JSON.stringify(this.state.grid));
-        console.log(this.state.grid)
         return (
             <div className="game-container">
                 {
@@ -231,8 +240,12 @@ export default class Game2048 extends React.Component {
                         <div className="heading">
                             <span className="title">2048</span>
                             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                <div className="score"><span className="tit">SCORE</span> <span>{score}</span></div>
-                                <div className="best-score"><span className="tit">BEST</span> <span>{bestScore}</span></div>
+                                <div className="score">
+                                    <span className="tit">SCORE</span> <span>{score}</span>
+                                </div>
+                                <div className="best-score">
+                                    <span className="tit">BEST</span> <span>{bestScore}</span>
+                                </div>
                             </div>
                         </div>
                         <div className="above-game">
@@ -252,7 +265,12 @@ export default class Game2048 extends React.Component {
                         <div className="row" key={rowIndex}>
                             {row.map((cell, columnIndex) => (
                                 <div className="tr-container" key={rowIndex * 4 + columnIndex + 1}>
-                                    {this.state.grid[rowIndex][columnIndex] !== 0 && <Tile num={cell} />}
+                                    {this.state.grid[rowIndex][columnIndex] !== 0 && (
+                                        <Tile
+                                            num={cell}
+                                            anim={animX === rowIndex && animY === columnIndex ? true : null}
+                                        />
+                                    )}
                                     <div className="cell" />
                                 </div>
                             ))}
@@ -272,3 +290,4 @@ export default class Game2048 extends React.Component {
 // todolists:
 // localstorage:grid gameover 卡主
 // 动画
+// 移动动画：是计算表格还是该方向所有移动

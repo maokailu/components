@@ -8,6 +8,6 @@ export default class Tile extends React.Component {
     }
     render() {
         let tile = 'tile-' + this.props.num;
-        return <div className={'tile ' + tile}>{this.props.num}</div>;
+        return <div className={'tile ' + tile + (this.props.anim ? ' show_anim' : '')}>{this.props.num}</div>;
     }
 }

@@ -19,7 +19,7 @@
 
       .tr-container {
         position: relative;
-        overflow: hidden;
+        // overflow: hidden;
         width: 57.5px;
         height: 57.5px;
       }
@@ -178,4 +178,13 @@
       font-weight: bold;
     }
   }
+}
+.show_anim {
+  display: block;
+  animation: show_anim 0.3s ease;
+}
+@keyframes show_anim
+{
+  from {transform:scale(none);}
+  to {transform:scale(1.1, 1.1);}
 }
