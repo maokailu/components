@@ -20,7 +20,7 @@ export default class Game2048 extends React.Component {
         };
     }
 
-    componentWillMount() {
+    NSAFEComponentWillMount() {
         // this.state.grid.length === 0 && this.initialGrid();
         this.initialGrid();
     }
@@ -94,6 +94,7 @@ export default class Game2048 extends React.Component {
         return direction;
     };
     touchStartHandler = event => {
+        debugger;
         startX = event.targetTouches[0].pageX;
         startY = event.targetTouches[0].pageY;
     };
