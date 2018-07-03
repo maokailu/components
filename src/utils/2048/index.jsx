@@ -296,3 +296,4 @@ export default class Game2048 extends React.Component {
 // 动画
 // 移动动画：是计算表格还是该方向所有移动2
 // issue11
+// master
