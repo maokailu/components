@@ -295,4 +295,4 @@ export default class Game2048 extends React.Component {
 // localstorage:grid gameover 卡主
 // 动画
 // 移动动画：是计算表格还是该方向所有移动
-// issue1
+// issue11
