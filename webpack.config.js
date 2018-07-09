@@ -12,13 +12,13 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', 'ts', 'tsx']
   },
   devServer: {
-    https: true,
+    // https: true,
     contentBase: './build', // 本地服务器所加载的页面所在的目录
     historyApiFallback: true, // 不跳转
     // inline: true, // 实时刷新 
     // hot: true,
-    // host: '10.32.84.16',
-    // port: 5389
+    host: '10.32.84.20',
+    port: 5389
   },
   module: {
     rules: [

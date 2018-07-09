@@ -1,0 +1,110 @@
+/*垂直弹性布局*/
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    -webkit-box-sizing:border-box;
+}
+.page{
+    height: 100vh;
+    width: 100vw;
+    /*定义为flexbox的"父元素"*/
+    display: -webkit-box; 
+    display: -webkit-flex;
+    display: flex;
+    /*指定主轴的伸缩流方向是纵向的*/
+    -webkit-box-orient:vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+    overflow-x:hidden;
+}
+.nav-box{
+    height: 8vh;
+    line-height: 8vh;
+    background: #383838;
+    color:white;
+    padding-left:3vw;
+    font-size:2vh
+}
+/*均分tab*/
+.footer-box{
+    display: flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    list-style: none;
+    height: 8vh;
+    border-top:1px solid #ddd;
+}
+.footer-box li{
+    flex:1;
+    -webkit-box-flex:1;
+    -webkit-flex:1;
+    width:0%;
+    color:#777;
+    text-align: center;
+    line-height: 8vh;
+    font-size:2vh;
+    transition:color 0.4s;
+}
+.content-box{
+    flex:1;
+    width:400vw;
+    overflow-x:hidden;
+    /*隐藏滚动条*/
+}
+#flipsnap{
+    width:400vw;
+    display: flex;
+    overflow-x:hidden;
+}
+#tab-container1,#tab-container2,#tab-container3,#tab-container4{
+    flex:1
+}
+.item{
+    border:1px solid #ddd;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.item:last-child{
+    border-bottom:none;
+}
+.item .item-content{
+    flex:0 0 96vw;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+}
+.item .item-content img{
+    flex:0 0 15vw;
+    height: 8vh;
+}
+.message{
+    flex:1;
+    height: 8vh;
+    padding-left:1vw;
+    padding-top:1vh;
+    padding-bottom:1vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.message .name{
+    font-size:2vh;
+    height:2vh;
+    line-height: 2vh;
+}
+.message .content{
+    font-size:1.5vh;
+    height:1.5vh;
+    line-height: 1.5vh;
+}
+.time{
+    flex:0 0 5vw;
+    height: 8vh;
+    padding-top:0.8vh;
+    /* ? */
+}
