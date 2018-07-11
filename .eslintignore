@@ -1,6 +1,6 @@
 src/vendor
 src/i18n
-src/resource
+src/resources
 
 dev
 debug
