@@ -1,7 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 // import App from './air-booking/detail';
-import App from './utils/swiper/tab';
+// import App from './utils/swiper/tab';
+import App from './utils/iscroll';
 import './resources/global.scss';
 import './main.scss';
 // import './utils/adaptation';

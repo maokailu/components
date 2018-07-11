@@ -17,8 +17,8 @@ module.exports = {
     historyApiFallback: true, // 不跳转
     // inline: true, // 实时刷新 
     // hot: true,
-    host: '10.32.84.20',
-    port: 5389
+    // host: '10.32.84.20',
+    // port: 5389
   },
   module: {
     rules: [
