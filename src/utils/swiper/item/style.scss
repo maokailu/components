@@ -1,0 +1,23 @@
+
+.ul{
+    width:100vw;
+    overflow: hidden;
+    background: white;
+    height:40px;
+    // testitem
+    .item-box{
+        width:120vw;
+        height:40px;
+        color:white;
+        display: flex;
+        .item-left{
+            width:100vw;
+            background:red;
+        }
+        .item-right{
+            width:20vw;
+            text-align: center;
+            background:orange;
+        }
+    }
+}

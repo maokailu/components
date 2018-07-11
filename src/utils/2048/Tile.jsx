@@ -11,3 +11,4 @@ export default class Tile extends React.Component {
         return <div className={'tile ' + tile + (this.props.anim ? ' show_anim' : '')}>{this.props.num}</div>;
     }
 }
+// issue
