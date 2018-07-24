@@ -1,0 +1,64 @@
+@import '../../resources/global.scss';
+body{
+  margin: 0;
+}
+.tab{
+  // margin: 10px;
+  .nav {
+    display: flex;
+    padding: 0 9px;
+    background-color: #f7f7f7;
+    border-bottom: 1px #ccc solid;
+    border-top: 1px #ccc solid;
+    span {
+        padding: 10px 0;
+        flex: 1;
+        text-align: center;position: relative;
+        &::before{
+          transform: scale(0, 1);
+          transition: transform 0.3s;
+          position: absolute;
+          top: 95%;
+          left: 0;
+          width: 0%;
+          height: 2px;
+          background: #1899f2;
+          content: '';
+        }
+    }
+    :last-child {
+      border-right: none;
+    }
+    .active {
+      color: #1899f2;
+      &::before{
+        width: 100%;
+        transform: scale(1, 1);
+      }
+    }
+  }
+  .content{
+    overflow-x:hidden;
+    #flipsnap{
+      width: 300%;
+      display: flex;
+      overflow-x:hidden;
+      .page{
+        flex: 1;
+        text-align: center;
+        .item{
+            margin: 9px;
+            color: #333;
+            padding: 12px 20px;
+            -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,0.15);
+            box-shadow: 0 1px 2px 0 rgba(0,0,0,0.15);
+            border-radius: 3px;
+            background-color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+      }
+    }
+  }
+}

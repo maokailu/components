@@ -1,0 +1,22 @@
+@keyframes sk-circleFadeDelay {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+.loading-box {
+    width: 25px;
+    overflow: hidden;
+    div{
+        height: 25px;
+        animation: sk-circleFadeDelay 1.5s infinite ease-in-out both;
+    }
+    .dot{
+        background-image: url('../../resources/svg/spinner-dot.svg');
+    }
+    .line{
+        background-image: url('../../resources/svg/spinner-line.svg');
+    }
+}

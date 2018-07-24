@@ -10,31 +10,31 @@
  */
 
 (function(root, factory) {
-  if (typeof define === 'function' && define.amd) {
-    define([], factory);
-  } else if (typeof exports === 'object') {
-    module.exports = factory();
-  } else {
-    root.Flipsnap = factory();
-  }
-})(this, function() {
+    if (typeof define === 'function' && define.amd) {
+      define([], factory);
+    } else if (typeof exports === 'object') {
+      module.exports = factory();
+    } else {
+      root.Flipsnap = factory();
+    }
+  })(this, function() {
 
-  var div = document.createElement('div');
-  var prefix = ['webkit', 'moz', 'o', 'ms'];
-  var saveProp = {};
-  var support = Flipsnap.support = {};
-  var gestureStart = false;
+    var div = document.createElement('div');
+    var prefix = ['webkit', 'moz', 'o', 'ms'];
+    var saveProp = {};
+    var support = Flipsnap.support = {};
+    var gestureStart = false;
 
-  var DISTANCE_THRESHOLD = 5;
-  var ANGLE_THREHOLD = 55;
+    var DISTANCE_THRESHOLD = 5;
+    var ANGLE_THREHOLD = 55;
 
-  support.transform3d = hasProp([
-    'perspectiveProperty',
-    'WebkitPerspective',
-    'MozPerspective',
-    'OPerspective',
-    'msPerspective'
-  ]);
+    support.transform3d = hasProp([
+      'perspectiveProperty',
+      'WebkitPerspective',
+      'MozPerspective',
+      'OPerspective',
+      'msPerspective'
+    ]);
 
   support.transform = hasProp([
     'transformProperty',

@@ -6,6 +6,7 @@
     "babel-jest": "^22.0.4",
     "babel-loader": "^7.1.2",
     "babel-plugin-react-transform": "^3.0.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
@@ -43,12 +44,13 @@
     "webpack-dev-server": "^2.9.1",
     "weinre": "^2.0.0-pre-I0Z7U9OV"
   },
-  "name": "webpack-sample-project",
+  "name": "components",
   "version": "",
   "description": "Sample webpack project",
   "scripts": {
     "start": "webpack-dev-server --inline --hot",
     "test": "jest",
+    "cover": "jest --coverage",
     "server": "webpack-dev-server --open",
     "build": "NODE_ENV=production webpack --config ./webpack.production.config.js --progress",
     "dev": "webpack --watch"
@@ -59,14 +61,14 @@
       "jsx"
     ],
     "setupFiles": [
-      "./tests/setup.js"
+      "<rootDir>/tests/setup.js"
     ],
     "collectCoverageFrom": [
-      "./src/components/*"
+      "<rootDir>/src/components/*"
     ],
     "moduleNameMapper": {
-      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": ".tests/fileMock.js",
-      "\\.(css|less)$": ".tests/styleMock.js"
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/fileMock.js",
+      "\\.(css|less|scss)$": "<rootDir>/tests/styleMock.js"
     },
     "transform": {
       "^.+\\.(js|jsx)$": "babel-jest"

@@ -1,0 +1,12 @@
+.demo{
+    .title{
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 12px 0;
+        background: #f7f7f7;
+        border-bottom: 1px #eee solid;
+        // font-size: 15px;
+        font-weight: 400;
+    }
+}

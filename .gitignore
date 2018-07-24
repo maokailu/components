@@ -1,3 +1,4 @@
 node_modules
 build/*.json
 build/*.js
+# /src/resources/flipsnap.js

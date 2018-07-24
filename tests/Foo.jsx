@@ -3,17 +3,17 @@ import React from 'react';
 const defaultProps = {};
 
 class Foo extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    return (
-      <div className="foo">
+    render() {
+        return (
+            <div className="foo">
         Bar
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
 
 Foo.defaultProps = defaultProps;
