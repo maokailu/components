@@ -60,10 +60,7 @@ export default class Demo extends React.Component {
         return (
             <div className="demo">
                 <div id="loginBtn">loginBtn</div>
-<<<<<<< HEAD
                 <Hello compiler="TypeScript" framework="React" />
-=======
->>>>>>> 39d71d21eb65d9fa76e90d28921a83cb7732cd82
                 <header className="title">组件</header>
                 <Tab>
                     {this.props.pages.map((page, index)=>{
