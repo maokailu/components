@@ -1,0 +1,36 @@
+
+@mixin circle {
+    width: 20px;   
+    height: 20px;   
+    border:2px solid #ddd;   
+    border-radius: 50%;   
+    margin-left: -5px;
+    transform: translateY(-10px)
+}
+.process-bar{
+    display: flex;
+    margin-left:20px;
+
+    .circle{ 
+        @include circle;
+        background: green;
+    }
+    .ceil{
+        display: flex;
+        margin-left: -5px;
+        .bar{
+            width: 100px;
+            height: 5px;
+            margin-left: -6px;
+        }
+        .circle{
+            @include circle;
+        }
+        .green{
+            background: green;
+        }
+        .gray{
+            background: #ccc;
+        }
+    }
+}
