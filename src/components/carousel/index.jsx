@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.scss';
 import Flipsnap from '../../resources/flipsnap.js';
+// 不断左移，左移后数组shift and push
 export default class Carousel extends React.Component {
     constructor(props) {
         super(props);
@@ -10,7 +11,7 @@ export default class Carousel extends React.Component {
     };
     componentDidMount() {
         const distance = document.getElementById('flipsnap').offsetWidth / 3;
-        this.flipsnap = Flipsnap('#flipsnap', {
+        this.flipsnap = new Flipsnap('#flipsnap', {
             distance: distance,
             maxPoint: 2
         });
