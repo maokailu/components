@@ -38,14 +38,20 @@ body{
   }
 }
 
-.tab1{
-  display: flex;
-  width: 300vw;
-  div{
-    flex: 1;
-    height: 100px;
-    text-align: center;
-    padding: 10px 0;
-    border: 1px solid gray;
+.wrapper{
+  width: 100vw;
+  overflow-x:hidden;
+  .tab1{
+    display: inline-flex; //width自适应
+    overflow: hidden;
+    div{
+      display: inline-block;
+      // flex: 1;
+      width: 375px;
+      height: 100px;
+      text-align: center;
+      padding: 10px 0;
+      border: 1px solid gray;
+    }
   }
 }
