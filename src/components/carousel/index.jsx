@@ -7,7 +7,7 @@ export default class Carousel extends React.Component {
         super(props);
     }
     state = {
-        current: 0
+        current: 1
     };
     componentDidMount() {
         const distance = document.getElementById('flipsnap').offsetWidth / 3;
@@ -23,14 +23,14 @@ export default class Carousel extends React.Component {
         this.flipsnap.element.addEventListener('fstouchend', ev => {
             this.setState({ current: ev.newPoint });
         });
-        this.timerID = setInterval(() => {
-            if (this.state.current !== 2) {
-                this.toggle(this.state.current + 1);
-            } else {
-                this.toggle(0);
-                // 使之朝右移
-            }
-        }, 2000);
+        // this.timerID = setInterval(() => {
+        //     if (this.state.current !== 2) {
+        //         this.toggle(this.state.current + 1);
+        //     } else {
+        //         this.toggle(0);
+        //         // 使之朝右移
+        //     }
+        // }, 2000);
     }
     componentWillUnmount() {
         clearInterval(this.timerID);

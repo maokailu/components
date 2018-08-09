@@ -30,6 +30,7 @@ body{
       overflow-x:hidden;
       div{
         flex: 1;
+        width: 100vw;
         background: orange;
         text-align: center;
         padding: 50px 0;
@@ -46,8 +47,7 @@ body{
     overflow: hidden;
     div{
       display: inline-block;
-      // flex: 1;
-      width: 375px;
+      width: 100vw;
       height: 100px;
       text-align: center;
       padding: 10px 0;
