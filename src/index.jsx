@@ -1,12 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
 // import Demo from './demo';
-// import Toast from './components/toast/toast-base';
+import Demo from './components/toast/demo';
 import Carousel from './components/carousel/carousel';
 import './index.scss';
 
 render(
-    <Carousel/>,
+    // <div onClick={()=>Toast.info()}>clickme</div>,
+    <Demo />,
     //     <div name="0">3</div>
     //     <div name="1">1</div>
     //     <div name="2">2</div>
