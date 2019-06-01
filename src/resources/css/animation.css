@@ -16,3 +16,40 @@
     50% {transform: scale(2, 1) translateX(100%);}
     100% {transform: scale(1, 1) translateX(200%);}
 }
+
+/* 大桃心摇晃，小桃心漂移变大消失动画 */
+.concern{ 
+    width: 10px;
+    height: 10px;
+    margin: 50px;
+    border: 1px solid green;
+    border-bottom: none;
+  }
+  .concern-anim{
+    animation: concern_anim 5s ease 1;
+    animation-fill-mode: forwards;
+  }
+  @keyframes concern_anim
+  {
+   0% {transform: rotate(0deg);}
+    33% {transform: rotate(-45deg);}
+    66% {transform: rotate(90deg);}
+    99% {transform: rotate(0deg);}
+  }
+  
+  .concern-small{
+    background: red;
+    width: 10px;
+    height: 10px;
+    margin: 50px;
+  }
+  .concern-small-anim{
+    animation: concern-small-anim 3s ease infinite;
+    animation-fill-mode : forwards;
+  }
+  @keyframes concern-small-anim
+  {
+    0% {transform: scale(0, 0) translate(0, 0);opacity: 1}
+    100% {transform: scale(2, 2) translate(20px, -20px);opacity:0}
+  }
+  
