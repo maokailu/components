@@ -1,0 +1,18 @@
+/* tab切换移动伸缩动画 */
+.line{
+    width: 50px;
+    height: 2px;
+    background: orange;
+    
+    margin: 50px;
+}
+.toggle_anim {
+    animation: toggle_anim 3s ease infinite;
+    animation-fill-mode : forwards;
+}
+@keyframes toggle_anim
+{
+    0% {transform: scale(none) translateX(0%);}
+    50% {transform: scale(2, 1) translateX(100%);}
+    100% {transform: scale(1, 1) translateX(200%);}
+}
