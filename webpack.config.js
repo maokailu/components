@@ -22,10 +22,10 @@ module.exports = {
     },
     devServer: {
         contentBase: './build',
-        historyApiFallback: true
+        historyApiFallback: true,
         // host: '10.32.84.20',
-        // host: '192.168.1.104',
-        // port: 5389
+        host: '127.0.0.1',
+        port: 8899
     },
     module: {
         rules: [
