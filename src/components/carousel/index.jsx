@@ -1,16 +1,17 @@
 import React from 'react';
 import './style.scss';
 import Flipsnap from '../../resources/flipsnap.js';
+// 不断左移，左移后数组shift and push
 export default class Carousel extends React.Component {
     constructor(props) {
         super(props);
     }
     state = {
-        current: 0
+        current: 1
     };
     componentDidMount() {
         const distance = document.getElementById('flipsnap').offsetWidth / 3;
-        this.flipsnap = Flipsnap('#flipsnap', {
+        this.flipsnap = new Flipsnap('#flipsnap', {
             distance: distance,
             maxPoint: 2
         });
@@ -22,14 +23,14 @@ export default class Carousel extends React.Component {
         this.flipsnap.element.addEventListener('fstouchend', ev => {
             this.setState({ current: ev.newPoint });
         });
-        this.timerID = setInterval(() => {
-            if (this.state.current !== 2) {
-                this.toggle(this.state.current + 1);
-            } else {
-                this.toggle(0);
-                // 使之朝右移
-            }
-        }, 2000);
+        // this.timerID = setInterval(() => {
+        //     if (this.state.current !== 2) {
+        //         this.toggle(this.state.current + 1);
+        //     } else {
+        //         this.toggle(0);
+        //         // 使之朝右移
+        //     }
+        // }, 2000);
     }
     componentWillUnmount() {
         clearInterval(this.timerID);

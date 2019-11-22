@@ -30,10 +30,28 @@ body{
       overflow-x:hidden;
       div{
         flex: 1;
+        width: 100vw;
         background: orange;
         text-align: center;
         padding: 50px 0;
       }
+    }
+  }
+}
+
+.wrapper{
+  width: 100vw;
+  overflow-x:hidden;
+  .tab1{
+    display: inline-flex; //width自适应
+    overflow: hidden;
+    div{
+      display: inline-block;
+      width: 100vw;
+      height: 100px;
+      text-align: center;
+      padding: 10px 0;
+      border: 1px solid gray;
     }
   }
 }

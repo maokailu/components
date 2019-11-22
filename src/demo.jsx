@@ -10,9 +10,6 @@ import { getSingle, createLoginLayer } from './utils/lib';
 export default class Demo extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-        };
     }
     componentDidMount() {
         var createSingleLoginLayer = getSingle(createLoginLayer);

@@ -12,11 +12,11 @@ let Toast = {
     show(content, duration, type) {
         if (!this.closeTimer) {
             this.createDiv(content, type);
-            console.log("first")
+            console.log('first');
         } else {
             clearTimeout(this.closeTimer);
             this.setContent(content, type);
-            console.log("notfirst")
+            console.log('notfirst');
         }
         this.remove(duration);
     },
