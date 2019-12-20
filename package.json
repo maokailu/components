@@ -80,8 +80,8 @@
   "dependencies": {
     "babel-eslint": "^8.2.2",
     "classnames": "^2.2.5",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-router": "^4.2.0",
     "url-loader": "^1.0.1"
   }

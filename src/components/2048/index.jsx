@@ -18,9 +18,7 @@ export default class Game2048 extends React.Component {
         this.state = {
             grid: JSON.parse(localStorage.getItem('grid')) || []
         };
-    }
 
-    NSAFEComponentWillMount() {
         // this.state.grid.length === 0 && this.initialGrid();
         this.initialGrid();
     }
@@ -29,12 +27,15 @@ export default class Game2048 extends React.Component {
         score = 0;
         this.initialGrid();
     };
+    // 初始化表格
     initialGrid = () => {
-        grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-
-        // grid = [[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]];
+        // 生成整个表格
+        // grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
+        grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [4, 4, 8, 16]];
         gameOver = false;
+        // 获取空余的表格
         let cells1 = this.availableCells();
+        // 生成随机数字
         this.getRandomNum(cells1);
         let cells2 = this.availableCells();
         this.getRandomNum(cells2);
@@ -43,11 +44,12 @@ export default class Game2048 extends React.Component {
         });
     };
     availableCells = () => {
+        // 空余表格数组[{rowIndex, columnIndex}]
         let cells = [];
-        grid.map((row, x) => {
-            row.map((cell, y) => {
-                if (!cell) {
-                    cells.push({ x: x, y: y });
+        grid.map((row, rowIndex) => {
+            row.map((column, columnIndex) => {
+                if (!column) {
+                    cells.push({ x: rowIndex, y: columnIndex });
                 }
             });
         });
@@ -101,7 +103,8 @@ export default class Game2048 extends React.Component {
         endX = event.changedTouches[0].pageX;
         endY = event.changedTouches[0].pageY;
         let direction = this.getDirection(startX, startY, endX, endY);
-        this.caculateGird(direction);
+        // this.caculateGird(direction);
+        this.caculateGird2(direction);
         let cells = this.availableCells();
         if (cells.length) {
             this.getRandomNum(cells);
@@ -112,8 +115,9 @@ export default class Game2048 extends React.Component {
     };
     // 1.执行多次崩溃 2.逻辑优化代码优化 3.将04改为变量 不一定是4*4的表格 4.修改样式后刷新好几次
 
+    // 交换算法
     // 空格子置为0。
-    // 遍历当前方向除最后一个外每个格子，与其后每个格子比较。如果相同则当前格子*2，后者置为0，并跳出循环继续遍历下一个格子；如果当前格子为0则与下个格子交换
+    // 遍历当前方向除最后一个外每个格子，与其后每个格子比较。如果相同则当前格子*2，后者置为0，并跳出循环继续遍历下一个格子；如果当前格子为0则与下个格子交换。
     // 这样一轮计算下来每个元素都将得到正确的值：即相邻元素相加并沿着移动方向紧靠在一起
     caculateGird = direction => {
         for (let i = 0; i < 4; i++) {
@@ -231,6 +235,78 @@ export default class Game2048 extends React.Component {
                     break;
                 }
             }
+        }
+    };
+    // 算法2
+    // 1、剔除0
+    // 2、只与旁边相同数字合并
+    // 3、补全0
+    caculateGird2 = (direction) => {
+        for (let baseIndex = 0; baseIndex < 4; baseIndex++) {
+            // 当前行非0元素集合
+            const noZeroList = [];
+            // 当前行合并后元素集合
+            const mergedList = [];
+            // 正方向
+            const positiveDirection = direction === 1 || direction === 2;
+            // 水平方向
+            const horizontalDirection = direction === 1 || direction === 3;
+            // 剔除非0元素
+            for (let index = 0; index < 4; index++) {
+                let elem;
+                horizontalDirection ? elem = grid[baseIndex][index] : elem = grid[index][baseIndex];
+                if (elem !== 0) noZeroList.push(elem);
+            }
+
+            let startIndex;
+            let endIndex;
+            switch (direction) {
+            // 向上
+            case 0:
+                startIndex = noZeroList.length - 1;
+                endIndex = -1;
+                break;
+            // 向右
+            case 1:
+                startIndex = 0;
+                endIndex = noZeroList.length;
+                break;
+            // 向下
+            case 2:
+                startIndex = 0;
+                endIndex = noZeroList.length;
+                break;
+            // 向左
+            case 3:
+                startIndex = noZeroList.length - 1;
+                endIndex = -1;
+                break;
+            }
+            // 遍历当前集合非0元素：与下一个元素对比，相同则合并下一位元素
+            for (let index = startIndex; positiveDirection ? index < endIndex : index > endIndex;
+                positiveDirection ? index++ : index--) {
+                if (noZeroList[index] === noZeroList[index + 1]) {
+                    positiveDirection ? mergedList.push(noZeroList[index] * 2) :
+                        mergedList.unshift(noZeroList[index] * 2);
+                    // 跳过已经被合并的下一位元素
+                    positiveDirection ? index++ : index--;
+                } else {
+                    positiveDirection ? mergedList.push(noZeroList[index]) :
+                        mergedList.unshift(noZeroList[index]);
+                }
+            }
+            // 用0补全表格行
+            const zeroList = new Array(4 - mergedList.length).fill(0);
+            const finalList = positiveDirection ?
+                zeroList.concat(mergedList) : mergedList.concat(zeroList);
+            if (horizontalDirection) {
+                grid[baseIndex] = finalList;
+            } else {
+                for (let rowIndex = 0; rowIndex < 4; rowIndex++) {
+                    grid[rowIndex][baseIndex] = finalList[rowIndex];
+                }
+            }
+            console.log(mergedList);
         }
     };
     render() {

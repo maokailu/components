@@ -188,3 +188,13 @@
     from {transform:scale(none);}
     to {transform:scale(1.1, 1.1);}
   }
+
+  .move_anim {
+    display: block;
+    animation: move_anim 0.3s ease;
+  }
+  @keyframes move_anim
+  {
+    from {transform:scale(none);}
+    to {transform:scale(1.1, 1.1);}
+  }

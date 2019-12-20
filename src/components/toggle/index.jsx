@@ -1,24 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.scss';
-export class Toggle extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    state = {
-        toggle: false
-    };
-    componentDidMount() {
-    }
-    toggle = () => {
-        this.setState(prevState =>({
-            toggle: !prevState.toggle
-        }));
-    }
-    render() {
-        return (
-            <span className="toggle-button" onClick={this.toggle}>
-                <span className="icon-circle"></span>
-            </span>
-        );
-    }
+export function Toggle() {
+    const [toggle, setToggle] = useState(false);
+    return (
+        <span className="toggle-button" onClick={()=>setToggle(!toggle)}>
+            <span className="icon-circle"></span>
+        </span>
+    );
 }

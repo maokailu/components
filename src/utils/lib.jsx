@@ -22,9 +22,14 @@ var getSingle = function(fn) {
 };
 var createLoginLayer = function() {
     var div = document.createElement('div');
-    div.innerHTML = '我是登录浮窗';
+    div.id = 'box';
+    div.innerHTML = `<div style="margin-left: 10px">我是登录浮窗</div>`;
     div.style.display = 'none';
     document.body.appendChild(div);
+    setTimeout(() => {
+        const dom = document.getElementById('box');
+        dom.style.display = 'none';
+    }, 1000);
     return div;
 };
 export {
