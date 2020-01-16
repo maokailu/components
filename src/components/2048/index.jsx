@@ -7,7 +7,6 @@ let startY = 0;
 let endX = 0;
 let endY = 0;
 let grid = JSON.parse(localStorage.getItem('grid')) || [];
-let gameOver = false;
 let score = 0;
 let bestScore = localStorage.getItem('bestscore') || 0;
 let animX = -1;
@@ -16,7 +15,8 @@ export default class Game2048 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            grid: JSON.parse(localStorage.getItem('grid')) || []
+            grid: JSON.parse(localStorage.getItem('grid')) || [],
+            gameOver: false
         };
 
         // this.state.grid.length === 0 && this.initialGrid();
@@ -30,9 +30,7 @@ export default class Game2048 extends React.Component {
     // 初始化表格
     initialGrid = () => {
         // 生成整个表格
-        // grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
-        grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [4, 4, 8, 16]];
-        gameOver = false;
+        grid = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]];
         // 获取空余的表格
         let cells1 = this.availableCells();
         // 生成随机数字
@@ -53,20 +51,6 @@ export default class Game2048 extends React.Component {
                 }
             });
         });
-        if (!cells.length) {
-            for (let i = 0; i < 4; i++) {
-                for (let j = 0; j < 4; j++) {
-                    if (
-                        (j < 3 ? grid[i][j] === grid[i][j + 1] : false) ||
-                        (j > 0 ? grid[i][j] === grid[i][j - 1] : false) ||
-                        (i > 0 ? grid[i - 1][j] === grid[i][j] : false) ||
-                        (i < 3 ? grid[i + 1][j] === grid[i][j] : false)
-                    ) {
-                        gameOver = false;
-                    }
-                }
-            }
-        }
         return cells;
     };
     getRandomNum = cells => {
@@ -308,8 +292,25 @@ export default class Game2048 extends React.Component {
             }
             console.log(mergedList);
         }
+        let gameOver = true;
+        // 判断游戏是否结束：每次移动后，遍历每个格子周围是否有相同数字
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if ((i !== 0 && grid[i][j] === grid[i - 1][j]) ||
+                    (j !== 3 && grid[i][j] === grid[i][j + 1]) ||
+                    (i !== 3 && grid[i][j] === grid[i + 1][j]) ||
+                    (j !== 0 && grid[i][j] === grid[i][j - 1])
+                ) {
+                    gameOver = false;
+                }
+            }
+        }
+        this.setState({
+            gameOver: gameOver
+        });
     };
     render() {
+        const { gameOver } = this.state;
         score > bestScore ? (bestScore = score) : bestScore;
         localStorage.setItem('bestscore', bestScore);
         localStorage.setItem('grid', JSON.stringify(this.state.grid));
