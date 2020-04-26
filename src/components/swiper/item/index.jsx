@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import './style.scss';
 
 export default class Testitem extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-        };
-    }
     componentDidMount() {
         var item = document.getElementById('item-box');
         var initX; // 触摸位置

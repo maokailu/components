@@ -5,6 +5,7 @@ src/resources
 dev
 debug
 demo
+build
 
 **/*.css
 **/*.scss

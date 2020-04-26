@@ -43,7 +43,8 @@ body{
       width: 300%;
       display: flex;
       overflow-x:hidden;
-      .page{
+      // 选择全部子元素，无论传进来的children是什么类型
+      >*{
         flex: 1;
         text-align: center;
         .item{

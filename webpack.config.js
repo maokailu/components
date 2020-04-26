@@ -25,7 +25,8 @@ module.exports = {
         historyApiFallback: true,
         // host: '10.32.84.20',
         host: '127.0.0.1',
-        port: 8899
+        port: 8889,
+        clientLogLevel: 'none'
     },
     module: {
         rules: [

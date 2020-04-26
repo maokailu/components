@@ -1,5 +1,6 @@
 
 .demo{
+    height: 100vh;
     .title{
         display: flex;
         flex-direction: column;
@@ -9,5 +10,8 @@
         border-bottom: 1px #eee solid;
         // font-size: 15px;
         font-weight: 400;
+    }
+    input{
+        border-color: orange;
     }
 }

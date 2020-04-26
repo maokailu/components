@@ -14,8 +14,9 @@ export default function Button(props) {
         document.title = `You clicked ${count} times`;
     });
     return (
-        <div className={ buttonStyle}
-            onClick={()=>setCount(count + 1)}
+        <div ref={props.inputRef}
+            className={ buttonStyle}
+            onClick={e => { setCount(count + 1); console.log('button', e.target); e.stopPropagation(); }}
             onTouchStart={ ()=>setSelected(true) }
             onTouchEnd = { ()=> setSelected(false) }>
             {props.text || 'Search'}

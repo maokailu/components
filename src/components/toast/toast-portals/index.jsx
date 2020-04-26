@@ -20,6 +20,7 @@ class Modal extends React.Component {
 
     componentDidMount() {
         modalRoot.appendChild(this.el);
+        throw new Error('this is a error');
     }
 
     componentWillUnmount() {
@@ -39,42 +40,69 @@ class Toast extends React.Component {
         this.state = {
             showModal: false,
             text: this.props.text || 'there is a message',
-            time: this.props.time || 2000
+            time: this.props.time || 2000,
+            hasError: false,
+            error: ''
         };
     }
-  handleShow = e => {
-      e.stopPropagation();
-      if (!this.closeTimer) {
-          this.setState({ showModal: true });
-      } else {
-          clearTimeout(this.closeTimer);
-      }
-      this.closeTimer = setTimeout(() => {
-          this.handleHide();
-      }, this.state.time);
-  }
+    // 应该放到顶层render a new error page, but hook not support the lifecycle
+    static getDerivedStateFromError(error) {
+        return {
+            hasError: true,
+            error: error
+        };
+    }
+    componentDidCatch() {
+        // error log
+        // logError('Toast', error)
+        const dom = document.querySelector('#modal');
+        console.log(dom);
+    }
+    // eslint-disable-next-line camelcase
+    UNSAFE_componentWillUpdate() {
+        this.setState({
+            color: 'red'
+        });
+    }
+    componentDidUpdate() {
+        this.setState({
+            color: 'blue'
+        });
+    }
+    handleShow = e => {
+        e.stopPropagation();
+        if (!this.closeTimer) {
+            this.setState({ showModal: true });
+        } else {
+            clearTimeout(this.closeTimer);
+        }
+        this.closeTimer = setTimeout(() => {
+            this.handleHide();
+        }, this.state.time);
+    }
 
-  handleHide = () =>{
-      this.setState({ showModal: false });
-      this.closeTimer = null;
-  }
+    handleHide = () =>{
+        this.setState({ showModal: false });
+        this.closeTimer = null;
+    }
 
-  render() {
-      const modal = this.state.showModal ? (
-          <Modal>
-              <div className="modal">
-                你好！
-              </div>
-          </Modal>
-      ) : null;
+    render() {
+        const modal = this.state.showModal ? (
+            <Modal>
+                {<div id="modal" className="modal">
+                    {!this.state.hasError ? '你好' : 'error'}
+                </div>}
+            </Modal>
+        ) : null;
 
-      return (
-          <div className="btn" onClick={this.handleShow}>
-                点击试试
-              {modal}
-          </div>
-      );
-  }
+        return (
+            <div className="btn" onClick={this.handleShow}>
+                    点击试试
+                {modal}
+                {this.state.color}
+            </div>
+        );
+    }
 }
 
 export { Toast, appRoot };

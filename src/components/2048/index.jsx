@@ -19,7 +19,6 @@ export default class Game2048 extends React.Component {
             gameOver: false
         };
 
-        // this.state.grid.length === 0 && this.initialGrid();
         this.initialGrid();
     }
 
@@ -97,7 +96,7 @@ export default class Game2048 extends React.Component {
             grid: grid
         });
     };
-    // 1.执行多次崩溃 2.逻辑优化代码优化 3.将04改为变量 不一定是4*4的表格 4.修改样式后刷新好几次
+    // 1.加上gameOver后出现了突然重启的情况 2.逻辑优化代码优化 3.修改样式后刷新好几次
 
     // 交换算法
     // 空格子置为0。
