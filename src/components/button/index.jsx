@@ -16,7 +16,6 @@ export default function Button(props) {
     return (
         <div ref={props.inputRef}
             className={ buttonStyle}
-            onClick={e => { setCount(count + 1); console.log('button', e.target); e.stopPropagation(); }}
             onTouchStart={ ()=>setSelected(true) }
             onTouchEnd = { ()=> setSelected(false) }>
             {props.text || 'Search'}

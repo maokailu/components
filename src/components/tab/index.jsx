@@ -4,7 +4,6 @@ import './style.scss';
 let flipsnap = null;
 export default function Tab(props) {
     const [current, useCurrent] = useState(0);
-    // 仅添加一次
     useEffect(() => {
         const distance = document.getElementById('flipsnap').offsetWidth / 3;
         flipsnap = new Flipsnap('#flipsnap', {
@@ -41,7 +40,9 @@ export default function Tab(props) {
             </div>
             <div className="content">
                 <div id="flipsnap">
-                    {props.children}
+                    {React.Children.map(props.children, (element) =>
+                        React.cloneElement(element, { current: current })
+                    )}
                 </div>
             </div>
         </div>

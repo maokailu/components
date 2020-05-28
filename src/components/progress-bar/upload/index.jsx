@@ -8,7 +8,7 @@ export default class ProgressBar extends React.Component {
         };
     }
     componentDidMount() {
-        // this.previewFiles([]);
+        this.previewFiles([]);
     }
     readFileSize = file => {
         let size = file.size / 1024;

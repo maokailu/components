@@ -1,6 +1,5 @@
 
 .demo{
-    height: 100vh;
     .title{
         display: flex;
         flex-direction: column;
@@ -14,4 +13,5 @@
     input{
         border-color: orange;
     }
+    height: 200vh;
 }

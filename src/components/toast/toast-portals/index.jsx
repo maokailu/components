@@ -20,7 +20,7 @@ class Modal extends React.Component {
 
     componentDidMount() {
         modalRoot.appendChild(this.el);
-        throw new Error('this is a error');
+        // throw new Error('this is a error');
     }
 
     componentWillUnmount() {
@@ -57,17 +57,6 @@ class Toast extends React.Component {
         // logError('Toast', error)
         const dom = document.querySelector('#modal');
         console.log(dom);
-    }
-    // eslint-disable-next-line camelcase
-    UNSAFE_componentWillUpdate() {
-        this.setState({
-            color: 'red'
-        });
-    }
-    componentDidUpdate() {
-        this.setState({
-            color: 'blue'
-        });
     }
     handleShow = e => {
         e.stopPropagation();

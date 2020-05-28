@@ -1,19 +1,21 @@
-import React, { useEffect } from 'react';
-import './style.scss';
+import React, { useEffect, useState } from 'react';
+import { getSingle, createLoginLayer } from './utils/lib';
 import Tab from 'tab';
+import AddItem from 'tab/addItem';
 import Button from 'button';
 import { LoadingRing } from 'icon';
 import { Toast } from 'toast-portals';
 import { Toggle } from 'toggle';
 import Input from './components/input';
-import './resources/global.scss';
-import { getSingle, createLoginLayer } from './utils/lib';
+import BackTop from './components/back-top';
+import Upload from './components/progress-bar/upload';
+import LoadingBar from './components/progress-bar/loading-bar';
 // const TabContext = React.createContext('data1');
+import './resources/global.scss';
+import './style.scss';
 
 export default function Demo() {
-    // 常量如何
-    let input = React.createRef();
-    const pages = [
+    const initPages = [
         {
             title: '基本',
             content: [
@@ -22,15 +24,15 @@ export default function Demo() {
                 { name: '提示', compenent: <Toast /> },
                 { name: '开关', compenent: <Toggle /> },
                 { name: '单例', compenent: <div id="loginBtn">登陆</div> },
-                { name: '输入框', compenent: <Input input={input} /> }
+                { name: '输入框', compenent: <Input input={input} /> },
+                { name: '添加项', compenent: <AddItem /> }
             ]
         },
         {
             title: '布局',
             content: [
-                { name: '选项',
-                    compenent: <i>Like this page</i>
-                }
+                { name: '选项', compenent: <i>Like this page</i> },
+                { name: '上传组件', compenent: <Upload /> }
             ]
         },
         {
@@ -40,8 +42,9 @@ export default function Demo() {
             ]
         }
     ];
+    const [pages] = useState(initPages);
+    let input = React.createRef();
     useEffect(() => {
-        console.log(input.current);
         // 创建单例
         var createSingleLoginLayer = getSingle(createLoginLayer);
         if (document.getElementById('loginBtn'))
@@ -50,13 +53,10 @@ export default function Demo() {
                 loginLayer.style.display = 'block';
             };
     }, []);
-    const test = e => {
-        // e.stopPropagation();
-        console.log('demo', e.target);
-    };
     return (
-        <div className="demo" onClick={test}>
+        <div className="demo">
             <header className="title">组件</header>
+            <LoadingBar />
             {/* <TabContext.Provider value="concrete data"> */}
             <Tab>
                 {/* {Tab暴露出children供不同父组件自定义} */}
@@ -71,6 +71,7 @@ export default function Demo() {
                     </div>
                 )}
             </Tab>
+            <BackTop />
             {/* </TabContext.Provider> */}
         </div>
     );

@@ -1,4 +1,4 @@
-@import '../../resources/global.scss';
+@import '../../../resources/global.scss';
 
 .filePicker{
     width: 160px;
@@ -25,7 +25,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 200px 0;
     .area{
         width: 100px;
         height: 100px;
@@ -39,8 +38,7 @@
 }
 
 .upload{
-    padding: 20px;
-    margin: 50px 200px;
+    padding: 20px;    margin: 50px 20px;
     text-align: center;
     background-color: orange;
 }

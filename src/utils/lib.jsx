@@ -1,11 +1,11 @@
-const validateType = (o, type)=>{
+export const validateType = (o, type)=>{
     let result = true;
     if (typeof o !== type) {
         result = false;
     }
     return result;
 };
-const isExist = (o)=>{
+export const isExist = (o)=>{
     let result = true;
     if (typeof o === undefined) {
         result = false;
@@ -13,14 +13,14 @@ const isExist = (o)=>{
     return result;
 };
 // 惰性单例
-var getSingle = function(fn) {
+export const getSingle = function(fn) {
     // 由于闭包的存在，result一直存在于getSingle中
     var result;
     return function() {
         return result || (result = fn.apply(this, arguments));
     };
 };
-var createLoginLayer = function() {
+export const createLoginLayer = function() {
     var div = document.createElement('div');
     div.id = 'box';
     div.innerHTML = `<div style="margin-left: 10px">我是登录浮窗</div>`;
@@ -32,10 +32,17 @@ var createLoginLayer = function() {
     }, 1000);
     return div;
 };
-export {
-    validateType,
-    isExist,
-    getSingle,
-    createLoginLayer
+
+export const copy = arr => {
+    var obj = arr.constructor === Array ? [] : {};
+    for (var item in arr) {
+        const type = Object.prototype.toString.call(arr[item]);
+        if (type === 'object Object' || type === 'object Array') {
+            obj[item] = copy(arr[item]);
+        } else {
+            obj[item] = arr[item];
+        }
+    }
+    return obj;
 };
 
