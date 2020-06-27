@@ -1,0 +1,19 @@
+.filter{
+      h3{
+          margin-top: 16px;
+      }
+      span{
+          margin-right: 8px;
+          display: inline-block;
+          width: 100px;
+          height: 32px;
+          background: #ccc;
+          margin-top: 4px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      .active{
+          background: orange;
+      }
+}

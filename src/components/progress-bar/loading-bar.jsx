@@ -24,7 +24,6 @@ export default function LoadingBar(props) {
                 'progress-bar': true,
                 'fixed': isFixed
             })}>
-            progress bar
         </div>
     );
 }

@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { getSingle, createLoginLayer } from './utils/lib';
+import { getSingle, createLoginLayer } from '../../utils/lib';
 import Tab from 'tab';
 import AddItem from 'tab/addItem';
 import Button from 'button';
 import { LoadingRing } from 'icon';
 import { Toast } from 'toast-portals';
 import { Toggle } from 'toggle';
-import Input from './components/input';
-import BackTop from './components/back-top';
-import Upload from './components/progress-bar/upload';
-import LoadingBar from './components/progress-bar/loading-bar';
+import Input from '../input';
+import BackTop from '../back-top';
+import Upload from '../progress-bar/upload';
+import LoadingBar from '../progress-bar/loading-bar';
+import useFilter from '../filter';
 // const TabContext = React.createContext('data1');
-import './resources/global.scss';
+import '../../resources/global.scss';
 import './style.scss';
 
-export default function Demo() {
+export default function Demo(props) {
+    const { flights, actions } = props;
+
     const initPages = [
         {
             title: '基本',
@@ -25,7 +28,8 @@ export default function Demo() {
                 { name: '开关', compenent: <Toggle /> },
                 { name: '单例', compenent: <div id="loginBtn">登陆</div> },
                 { name: '输入框', compenent: <Input input={input} /> },
-                { name: '添加项', compenent: <AddItem /> }
+                { name: '添加项', compenent: <AddItem /> },
+                { name: '筛选', compenent: <div> {useFilter(flights, actions)} </div>},
             ]
         },
         {
@@ -38,7 +42,7 @@ export default function Demo() {
         {
             title: '高级',
             content: [
-                { name: '日历', compenent: <div/> }
+                { name: '日历', compenent: <div/> },
             ]
         }
     ];
@@ -53,6 +57,22 @@ export default function Demo() {
                 loginLayer.style.display = 'block';
             };
     }, []);
+
+    // 初始化航班信息
+    useEffect(() => {
+        const flightList = [{
+            airline: 'HK',
+            stop: 1,
+            name: 'Hong Kong airline'
+        },
+        {
+            airline: 'HK',
+            stop: 2,
+            name: 'Hong Kong airline'
+        }];
+        actions.initFlights(flightList);
+    }, [actions]);
+
     return (
         <div className="demo">
             <header className="title">组件</header>
@@ -75,4 +95,6 @@ export default function Demo() {
             {/* </TabContext.Provider> */}
         </div>
     );
-}
+};
+
+

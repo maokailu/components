@@ -1,6 +1,5 @@
 import React from 'react';
 import './style.scss';
-import Flipsnap from '../../resources/flipsnap.js';
 // 不断左移，左移后数组shift and push
 export default class Carousel extends React.Component {
     constructor(props) {
@@ -10,19 +9,19 @@ export default class Carousel extends React.Component {
         current: 1
     };
     componentDidMount() {
-        const distance = document.getElementById('flipsnap').offsetWidth / 3;
-        this.flipsnap = new Flipsnap('#flipsnap', {
-            distance: distance,
-            maxPoint: 2
-        });
-        this.flipsnap.element.addEventListener('fstouchmove', ev => {
-            if ((!this.flipsnap.hasNext() && ev.direction === 1) || (!this.flipsnap.hasPrev() && ev.direction === -1)) {
-                ev.preventDefault();
-            }
-        });
-        this.flipsnap.element.addEventListener('fstouchend', ev => {
-            this.setState({ current: ev.newPoint });
-        });
+        // const distance = document.getElementById('flipsnap').offsetWidth / 3;
+        // this.flipsnap = new Flipsnap('#flipsnap', {
+        //     distance: distance,
+        //     maxPoint: 2
+        // });
+        // this.flipsnap.element.addEventListener('fstouchmove', ev => {
+        //     if ((!this.flipsnap.hasNext() && ev.direction === 1) || (!this.flipsnap.hasPrev() && ev.direction === -1)) {
+        //         ev.preventDefault();
+        //     }
+        // });
+        // this.flipsnap.element.addEventListener('fstouchend', ev => {
+        //     this.setState({ current: ev.newPoint });
+        // });
         // this.timerID = setInterval(() => {
         //     if (this.state.current !== 2) {
         //         this.toggle(this.state.current + 1);
@@ -37,7 +36,7 @@ export default class Carousel extends React.Component {
     }
     toggle = index => {
         this.setState({ current: index });
-        this.flipsnap.moveToPoint(index);
+        // this.flipsnap.moveToPoint(index);
     };
     render() {
         return (

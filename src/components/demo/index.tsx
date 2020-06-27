@@ -5,5 +5,5 @@ import { Hello } from "./Hello.tsx";
 
 ReactDOM.render(
     <Hello compiler="TypeScript" framework="React" />,
-    document.getElementById("app-root")
+    document.getElementById("root")
 );
