@@ -16,8 +16,10 @@ export default class PullView extends React.Component {
     status = ['下拉刷新', '释放刷新', '正在刷新', '刷新成功', '刷新失败'];
     icons = ['arrow-down-triangle', 'arrow-up-triangle', 'loading', 'success', 'error'];
     initY = 0; // 滑动开始时的坐标
-    moveY = 0; // 滑动时的坐标
-    Y = 0; // 滑动向量
+    currentY = 0; // 实时坐标
+    spaceY = 0; // 滑动距离
+    threshold = 40;
+    pullRefreshHeight = 40;
 
     getJSON = url => {
         const promise = new Promise((resolve, reject) => {
@@ -43,7 +45,7 @@ export default class PullView extends React.Component {
     touchStartHandler(e) {
         var obj = e.target.parentNode;
         if (obj.className === 'box') {
-            this.initY = (e.targetTouches[0].pageY * 100) / document.documentElement.clientHeight;
+            this.initY = e.targetTouches[0].pageY / 10;
         }
         this.setState({
             status: this.status[0],
@@ -57,16 +59,17 @@ export default class PullView extends React.Component {
     touchMoveHandler(e) {
         var obj = e.target.parentNode;
         if (obj.className === 'box') {
-            this.moveY = (e.targetTouches[0].pageY * 100) / document.documentElement.clientHeight;
-            this.Y = this.moveY - this.initY;
-            if (this.Y > 0) {
-                obj.style.WebkitTransform = 'translateY(' + (this.Y - 40) + 'px)';
-                if (this.Y > 0 && this.Y < 20) {
+            this.currentY = e.targetTouches[0].pageY / 10;
+            this.spaceY = this.currentY - this.initY;
+            if (this.spaceY > 0) {
+                console.log(obj.style)
+                obj.style.WebkitTransform = 'translateY(' + (this.spaceY - this.pullRefreshHeight) + 'px)';
+                if (this.spaceY > 0 && this.spaceY < this.threshold) {
                     this.setState({
                         status: this.status[0],
                         icon: this.icons[0]
                     });
-                } else if (this.Y >= 20) {
+                } else if (this.spaceY >= this.threshold) {
                     this.setState({
                         status: this.status[1],
                         icon: this.icons[1]

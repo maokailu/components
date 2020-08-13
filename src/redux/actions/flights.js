@@ -4,9 +4,9 @@ export const initFlights = flights => {
         flights
     };
 };
-export const filterFlights = choices => {
+export const filterFlights = options => {
     return {
-        type: 'fliter',
-        choices
+        type: 'filter',
+        options
     };
 };

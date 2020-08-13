@@ -16,20 +16,20 @@ import '../../resources/global.scss';
 import './style.scss';
 
 export default function Demo(props) {
-    const { flights, actions } = props;
+    const { actions } = props;
 
     const initPages = [
         {
             title: '基本',
             content: [
                 { name: '按钮', compenent: <Button /> },
-                { name: '加载', compenent: <LoadingRing /> },
+                { name: '加载', compenent: <div /> },
                 { name: '提示', compenent: <Toast /> },
                 { name: '开关', compenent: <Toggle /> },
                 { name: '单例', compenent: <div id="loginBtn">登陆</div> },
                 { name: '输入框', compenent: <Input input={input} /> },
                 { name: '添加项', compenent: <AddItem /> },
-                { name: '筛选', compenent: <div> {useFilter(flights, actions)} </div>},
+                { name: '筛选', compenent: <div> {useFilter(actions)} </div>}
             ]
         },
         {

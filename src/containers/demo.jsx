@@ -1,6 +1,8 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Demo from '../components/demo';
+// import Demo from '../components/demo';
+import List from '../components/demo/list.jsx';
+
 import * as actions from '../redux/actions';
 import { createFlights } from '../redux/selectors';
 
@@ -14,4 +16,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Demo);
+)(List);

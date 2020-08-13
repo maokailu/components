@@ -18,8 +18,11 @@ module.exports = merge(base, {
         }
     },
     devServer: {
+        host: '127.0.0.1',
+        disableHostCheck: true,
         contentBase: path.resolve('src/assets'),
         port: 8889,
+        // https: true,
         inline: true,
         hot: true
     }

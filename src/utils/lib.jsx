@@ -46,3 +46,25 @@ export const copy = arr => {
     return obj;
 };
 
+// es5
+export const unique = list => {
+    let obj = {};
+    return list.filter(item => {
+        const key = typeof item + item;
+        if (Object.hasOwnProperty(key)) {
+            return false;
+        } else {
+            obj[key] = true;
+            return true;
+        }
+    });
+};
+
+const uniq = list => {
+    let filteredList = [];
+    // filteredList = list.filter((item, index) => list.indexOf(item) === index);
+    // find length > 1
+    // list.
+    return filteredList;
+};
+

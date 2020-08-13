@@ -30,13 +30,12 @@ const defaultOptions = {
         }
     ]
 };
-const useFilter = (flights, actions, optionFromProps, id) => {
+const useFilter = (actions, optionFromProps, filterId) => {
     const [options, setOptions] = useState(optionFromProps || defaultOptions);
-    const [choices, setChoices] = useState({});
 
     useEffect(()=>{
         setOptions(optionFromProps || defaultOptions);
-    }, [id]);
+    }, [filterId]);
 
     const choose = (type, code) => {
         setOptions(produce(draft => {
@@ -45,34 +44,24 @@ const useFilter = (flights, actions, optionFromProps, id) => {
         }));
     };
     const filter  = () => {
-        const filterFlights = flights.flightList.filter(flight => {
-            let result = false;
-            const choicesNames =  Object.getOwnPropertyNames(choices);
-            if (choicesNames.length) {
-                result = choicesNames.reduce((prev, curr) => {
-                    prev && choices[curr].includes(flight[curr]);
-                }, true);
-            }
-            return result;
-        });
-        actions.filterFlights(filterFlights);
+        actions.filterFlights(options);
     };
     return (
         <div className="filter">
-            <div><h3>筛选项</h3>
+            <div><h3>筛选项2</h3>
                 <div>
                     {Object.getOwnPropertyNames(options).map((type, typeIndex) => (
                         <div key={typeIndex}>
                             {type}
                             {options[type].map((item, index) =>
-                                <span key={index} onClick={() => choose(type, item.code)}
+                                <span key={index} onClick={useCallback(() => choose(type, item.code))}
                                     className={item.status ? 'active' : ''}>
                                     {item.name}
                                 </span>
                             )}
                         </div>
                     ))}
-                    <div onClick={() => filter(flights)}>filter</div>
+                    <div onClick={filter}>filter</div>
                 </div>
             </div>
         </div>

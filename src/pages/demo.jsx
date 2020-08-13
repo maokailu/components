@@ -1,3 +1,4 @@
+import { hot } from 'react-hot-loader/root';
 import React from 'react';
 import { createStore } from 'redux';
 import reducers from '../redux/reducers';
@@ -13,4 +14,4 @@ const App = props => {
     );
 };
 
-export default App;
+export default hot(App);
