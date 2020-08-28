@@ -31,7 +31,6 @@ export default class Toggle extends React.Component {
         document.addEventListener('touchend', this.touchEnd);
     }
     touchStart = e => {
-        console.log(e.targetTouches[0].pageY);
         this.startY = e.targetTouches[0].pageY;
     }
     touchMove = e => {

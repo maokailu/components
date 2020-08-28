@@ -4,7 +4,7 @@ const merge = require('webpack-merge');
 
 
 module.exports = merge(base, {
-    devtool: 'eval-source-map',
+    devtool: 'source-map',
     mode: 'development',
     resolve: {
         extensions: ['.js', '.jsx', '.json', 'ts', 'tsx'],

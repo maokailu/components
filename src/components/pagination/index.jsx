@@ -34,7 +34,6 @@ export default class Pagination extends React.Component {
                 pageNums: [minPageNum, 0, pageNum - 2, pageNum - 1, pageNum, pageNum + 1, pageNum + 2, 0, maxPageNum]
             });
         }
-        console.log(minPageNum);
     };
     render() {
         const pageNums = this.state.pageNums;

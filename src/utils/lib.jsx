@@ -68,3 +68,19 @@ const uniq = list => {
     return filteredList;
 };
 
+export const getData = (url) => {
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                resolve(xhr.response);
+            } else {
+                resolve(xhr.response);
+                // reject(new Error(xhr.response));
+            }
+        };
+        xhr.open('POST', url);
+        xhr.send();
+    });
+};
+

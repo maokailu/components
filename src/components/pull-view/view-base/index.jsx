@@ -1,6 +1,7 @@
 import React from 'react';
+import withInterval from '../../hoc/withInterval';
 import './style.scss';
-export default class PullView extends React.Component {
+class PullView extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -11,16 +12,23 @@ export default class PullView extends React.Component {
         this.touchStartHandler = this.touchStartHandler.bind(this);
         this.touchMoveHandler = this.touchMoveHandler.bind(this);
         this.touchEndHandler = this.touchEndHandler.bind(this);
-        this.getJSON = this.getJSON.bind(this);
+        this.status = ['下拉刷新', '释放刷新', '正在刷新', '刷新成功', '刷新失败'];
+        this.icons = ['arrow-down-triangle', 'arrow-up-triangle', 'loading', 'success', 'error'];
+        this.initY = 0; // 滑动开始时的坐标
+        this.currentY = 0; // 实时坐标
+        this.spaceY = 0; // 滑动距离
+        this.threshold = 40;
+        this.pullRefreshHeight = 40;
     }
-    status = ['下拉刷新', '释放刷新', '正在刷新', '刷新成功', '刷新失败'];
-    icons = ['arrow-down-triangle', 'arrow-up-triangle', 'loading', 'success', 'error'];
-    initY = 0; // 滑动开始时的坐标
-    currentY = 0; // 实时坐标
-    spaceY = 0; // 滑动距离
-    threshold = 40;
-    pullRefreshHeight = 40;
 
+    componentDidMount() {
+        // window.open('http://localhost:8081', '_blank');
+        window.addEventListener('message', event=>{
+            // console.log(event.data);
+        }, false);
+        const param = location.search
+        console.log('\\<script>1\n</script>');
+    }
     getJSON = url => {
         const promise = new Promise((resolve, reject) => {
             const handler = function() {
@@ -34,7 +42,7 @@ export default class PullView extends React.Component {
                 }
             };
             const client = new XMLHttpRequest();
-            client.open('GET', url);
+            client.open('TRACE', url);
             client.onreadystatechange = handler;
             client.responseType = 'json';
             client.setRequestHeader('Accept', 'application/json');
@@ -62,7 +70,6 @@ export default class PullView extends React.Component {
             this.currentY = e.targetTouches[0].pageY / 10;
             this.spaceY = this.currentY - this.initY;
             if (this.spaceY > 0) {
-                console.log(obj.style)
                 obj.style.WebkitTransform = 'translateY(' + (this.spaceY - this.pullRefreshHeight) + 'px)';
                 if (this.spaceY > 0 && this.spaceY < this.threshold) {
                     this.setState({
@@ -121,7 +128,7 @@ export default class PullView extends React.Component {
     };
     render() {
         return (
-            <div className="wrapper">
+            <div id="pullview" className="wrapper" dangerouslySetInnerHTML={console.log(2)}>
                 <div
                     className="box"
                     onTouchStart={e => this.touchStartHandler(e)}
@@ -132,10 +139,12 @@ export default class PullView extends React.Component {
                         {this.state.status}
                     </div>
                     <div className="main">
-                    下拉该页面进行刷新
+                        {/* 下拉该页面进行刷新 */}
+                        {/* {this.props.second} */}
                     </div>
                 </div>
             </div>
         );
     }
 }
+export default withInterval(PullView, 'pullview');

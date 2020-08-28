@@ -289,7 +289,6 @@ export default class Game2048 extends React.Component {
                     grid[rowIndex][baseIndex] = finalList[rowIndex];
                 }
             }
-            console.log(mergedList);
         }
         let gameOver = true;
         // 判断游戏是否结束：每次移动后，遍历每个格子周围是否有相同数字

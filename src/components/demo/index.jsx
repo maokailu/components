@@ -11,12 +11,15 @@ import BackTop from '../back-top';
 import Upload from '../progress-bar/upload';
 import LoadingBar from '../progress-bar/loading-bar';
 import useFilter from '../filter';
+import useInterval from '../useInterval';
 // const TabContext = React.createContext('data1');
 import '../../resources/global.scss';
+import { getData } from '../../utils/lib';
 import './style.scss';
 
 export default function Demo(props) {
     const { actions } = props;
+    const second = useInterval();
 
     const initPages = [
         {
@@ -60,6 +63,14 @@ export default function Demo(props) {
 
     // 初始化航班信息
     useEffect(() => {
+        getData('http://localhost:8889/').then(data => {
+            console.log('data:'+data);
+            throw new Error('tes');
+        }, err => {
+            console.log('err1:'+ err)
+        }).catch(err=>{
+            console.log('err3:'+ err)
+        });
         const flightList = [{
             airline: 'HK',
             stop: 1,
@@ -72,7 +83,6 @@ export default function Demo(props) {
         }];
         actions.initFlights(flightList);
     }, [actions]);
-
     return (
         <div className="demo">
             <header className="title">组件</header>
