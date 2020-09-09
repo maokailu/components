@@ -22,6 +22,7 @@ module.exports = merge(base, {
         disableHostCheck: true,
         contentBase: path.resolve('src/assets'),
         port: 8889,
+        open: true,
         // https: true,
         inline: true,
         hot: true

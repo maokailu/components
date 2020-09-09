@@ -4,9 +4,9 @@ import './style.scss';
 const shortMonthNames = ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'];
 let selectCount = 0;
 let firstChoose = 0;
-export default class DatePicker extends React.Component {
-    constructor(props) {
-        super(props);
+export default class DatePicker {
+    constructor() {
+        // super(props);
         this.state = {
             grid: [],
             current: -1,

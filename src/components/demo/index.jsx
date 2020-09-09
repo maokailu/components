@@ -19,6 +19,7 @@ import './style.scss';
 
 export default function Demo(props) {
     const { actions } = props;
+    const [count, setCount] = useState(0);
     const second = useInterval();
 
     const initPages = [
@@ -51,6 +52,20 @@ export default function Demo(props) {
     ];
     const [pages] = useState(initPages);
     let input = React.createRef();
+    // fcp
+    useEffect(() => {
+        const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+                const metricName = entry.name;
+                const time = Math.round(entry.startTime + entry.duration);
+            
+                console.log(metricName, time)
+            }
+        });
+        observer.observe({entryTypes: ['paint']});
+
+
+    }, []);
     useEffect(() => {
         // 创建单例
         var createSingleLoginLayer = getSingle(createLoginLayer);
@@ -60,16 +75,12 @@ export default function Demo(props) {
                 loginLayer.style.display = 'block';
             };
     }, []);
-
     // 初始化航班信息
     useEffect(() => {
         getData('http://localhost:8889/').then(data => {
-            console.log('data:'+data);
             throw new Error('tes');
         }, err => {
-            console.log('err1:'+ err)
         }).catch(err=>{
-            console.log('err3:'+ err)
         });
         const flightList = [{
             airline: 'HK',
@@ -83,6 +94,54 @@ export default function Demo(props) {
         }];
         actions.initFlights(flightList);
     }, [actions]);
+
+    useEffect(()=>{
+        // function t(){
+        //     var i = 1;
+        //     setTimeout(() => {
+        //         console.log(i)
+        //     }, 1000)
+        //     return function change(){
+        //         i=2;
+        //     }
+        // }
+        // change = t();
+        // change();
+
+        // function t(){
+        //     var i = 0;
+        //     setInterval(() => {
+        //         i=i+1;
+        //         console.log(i)
+        //     }, 1000)
+        // }
+        // t();
+    }, [])
+    useEffect(() => {
+        const id = setInterval(() => {
+            // console.log(count)
+            setCount(count + 1);
+        }, 1000);
+        return () => clearInterval(id);
+      }, [count]);
+
+    useEffect(() => {
+        const timeout=new Promise(resolve=>{
+            setTimeout(()=>{
+                resolve('timeout');
+            }, 1000)
+        })
+        const request=new Promise(resolve=>{
+            setTimeout(()=>{
+                resolve('response');
+            }, 2000)
+        }).then(()=>{
+        })
+        Promise.race([request, timeout]).then(res => {
+            return res;
+        })
+    }, []);
+
     return (
         <div className="demo">
             <header className="title">组件</header>
