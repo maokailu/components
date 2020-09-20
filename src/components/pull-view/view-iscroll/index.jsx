@@ -60,7 +60,6 @@ export default class Toggle extends React.Component {
     }
     pullDownAction = () => {
         setTimeout(()=> {
-            console.log('new data');
             const succuss = true;
             if (succuss) {
                 this.loadingStep = 2;

@@ -1,5 +1,6 @@
 import React from 'react';
 import withInterval from '../../hoc/withInterval';
+import { getData } from '../../../utils/lib';
 import './style.scss';
 class PullView extends React.Component {
     constructor(props) {
@@ -19,15 +20,26 @@ class PullView extends React.Component {
         this.spaceY = 0; // 滑动距离
         this.threshold = 40;
         this.pullRefreshHeight = 40;
+        this.expectedTextButGotJSON = {
+            type: 'div',
+            props: {
+                dangerouslySetInnerHTML: {
+                    __html: '/* put your exploit here */'
+                }
+            }
+        };
+        
     }
 
     componentDidMount() {
+        getData('http://localhost:8889/').then(data => {
+            console.log('data:' + data);
+        });
         // window.open('http://localhost:8081', '_blank');
         window.addEventListener('message', event=>{
             // console.log(event.data);
         }, false);
         const param = location.search
-        console.log('\\<script>1\n</script>');
     }
     getJSON = url => {
         const promise = new Promise((resolve, reject) => {
@@ -104,7 +116,6 @@ class PullView extends React.Component {
                                 icon: this.icons[3],
                                 data: json
                             });
-                            console.log(json);
                         },
                         error => {
                             this.setState({
@@ -126,9 +137,19 @@ class PullView extends React.Component {
             }
         }
     };
+      
     render() {
+        // console.log(this)
+        // function test() {
+        //     console.log('1'+this)
+        // }
+        // test();
+        // const test1 = () => {
+        //     console.log('1'+this)
+        // }
+        // test1();
         return (
-            <div id="pullview" className="wrapper" dangerouslySetInnerHTML={console.log(2)}>
+            <div id="pullview" className="wrapper">
                 <div
                     className="box"
                     onTouchStart={e => this.touchStartHandler(e)}
@@ -142,6 +163,7 @@ class PullView extends React.Component {
                         {/* 下拉该页面进行刷新 */}
                         {/* {this.props.second} */}
                     </div>
+                    {/* {this.expectedTextButGotJSON} */}
                 </div>
             </div>
         );

@@ -80,6 +80,9 @@ export const getData = (url) => {
         };
         xhr.open('POST', url);
         xhr.send();
+
+        xhr.timeout = 1000;
+        xhr.ontimeout = reject;
     });
 };
 
