@@ -75,8 +75,7 @@ export const getData = (url) => {
             if (xhr.status === 200) {
                 resolve(xhr.response);
             } else {
-                resolve(xhr.response);
-                // reject(new Error(xhr.response));
+                reject(new Error(xhr.response));
             }
         };
         xhr.open('POST', url);

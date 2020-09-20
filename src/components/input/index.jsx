@@ -5,4 +5,4 @@ const Input = props => {
         <input ref={props.input} value={value} onInput={e => setValue(e.target.value)} />
     );
 };
-export default Input;
+export default React.memo(Input);

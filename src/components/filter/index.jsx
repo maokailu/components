@@ -30,7 +30,7 @@ const defaultOptions = {
         }
     ]
 };
-const useFilter = (actions, optionFromProps, filterId) => {
+const Filter = (actions, optionFromProps, filterId, item) => {
     const [options, setOptions] = useState(optionFromProps || defaultOptions);
 
     useEffect(()=>{
@@ -46,6 +46,7 @@ const useFilter = (actions, optionFromProps, filterId) => {
     const filter  = () => {
         actions.filterFlights(options);
     };
+    console.log('filter', item)
     return (
         <div className="filter">
             <div><h3>筛选项2</h3>
@@ -67,4 +68,4 @@ const useFilter = (actions, optionFromProps, filterId) => {
         </div>
     );
 };
-export default useFilter;
+export default Filter;

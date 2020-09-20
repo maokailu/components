@@ -11,7 +11,6 @@ export default class Verification extends React.Component {
         this.result = this.verification();
         this.vcode = this.result.code; // 随机生成的验证码
         this.imgDataURL = this.result.dataURL;
-        console.log(this.vcode, this.imgDataURL);
     }
     randFloat(start, end) {
         return start + Math.random() * (end - start);

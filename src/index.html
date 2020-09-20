@@ -5,11 +5,25 @@
     <title>air-booking</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="preconnect" href="//pic.english.c-ctrip.com" />
-    <link rel="dns-prefetch" href="//pic.english.c-ctrip.com" />
-    <script crossorigin async src="/js/react.js"></script>
-    <script crossorigin async src="/js/react-dom.js"></script>
+
+    <script  src="https://www.google-analytics.com/analytics.js"></script>
+    <!-- Register the PerformanceObserver to track paint timing. -->
+    <script>
+      const observer = new PerformanceObserver((list) => {
+        for (const entry of list.getEntries()) {
+        const metricName = entry.name;
+        const time = Math.round(entry.startTime + entry.duration);
+        console.log(metricName, time)
+      }
+    });
+    observer.observe({entryTypes: ['paint']});
+    </script>
+    <link rel="stylesheet" src="https://webresource.c-ctrip.com/ResH5FlightOnline/R3/swift-20200907203343/dist/assets/styles/spa.css" />
   </head> 
-  <body><div id="root"></div>
+  <body>
+    <div id="root"></div>
+    <script crossorigin  src="/js/react.js"></script>
+    <script crossorigin  src="/js/react-dom.js"></script>
   </body>
 </html>
+

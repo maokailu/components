@@ -11,6 +11,12 @@ export default class BackTop extends React.Component {
     }
     componentDidMount() {
         window.addEventListener('scroll', this.showBackTop);
+        setTimeout(()=>{
+            this.setState({
+                test: 1
+            });
+            console.log(this.state.test);
+        }, 1000);
     }
     showBackTop = () => {
         // 当滚动距离 > 1/4页面高度时展示回到顶部

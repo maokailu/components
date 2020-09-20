@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { getSingle, createLoginLayer } from '../../utils/lib';
-import Tab from 'tab';
-import AddItem from 'tab/addItem';
-import Button from 'button';
-import { LoadingRing } from 'icon';
-import { Toast } from 'toast-portals';
-import { Toggle } from 'toggle';
+import Tab from 'components/tab';
+import AddItem from 'components/tab/addItem';
+import Button from 'components/button';
+import { Toggle } from 'components/toggle';
 import Input from '../input';
 import BackTop from '../back-top';
 import Upload from '../progress-bar/upload';
 import LoadingBar from '../progress-bar/loading-bar';
-import useFilter from '../filter';
+import Filter from '../filter';
 import useInterval from '../useInterval';
 // const TabContext = React.createContext('data1');
 import '../../resources/global.scss';
@@ -19,7 +17,8 @@ import './style.scss';
 
 export default function Demo(props) {
     const { actions } = props;
-    const second = useInterval();
+    const [count, setCount] = useState(0);
+    // const second = useInterval();
 
     const initPages = [
         {
@@ -27,12 +26,11 @@ export default function Demo(props) {
             content: [
                 { name: '按钮', compenent: <Button /> },
                 { name: '加载', compenent: <div /> },
-                { name: '提示', compenent: <Toast /> },
                 { name: '开关', compenent: <Toggle /> },
                 { name: '单例', compenent: <div id="loginBtn">登陆</div> },
                 { name: '输入框', compenent: <Input input={input} /> },
                 { name: '添加项', compenent: <AddItem /> },
-                { name: '筛选', compenent: <div> {useFilter(actions)} </div>}
+                // { name: '筛选', compenent: <div> {Filter(actions)} </div>}
             ]
         },
         {
@@ -58,18 +56,16 @@ export default function Demo(props) {
             document.getElementById('loginBtn').onclick = function() {
                 var loginLayer = createSingleLoginLayer();
                 loginLayer.style.display = 'block';
+                setC
             };
     }, []);
 
     // 初始化航班信息
     useEffect(() => {
         getData('http://localhost:8889/').then(data => {
-            console.log('data:'+data);
             throw new Error('tes');
         }, err => {
-            console.log('err1:'+ err)
         }).catch(err=>{
-            console.log('err3:'+ err)
         });
         const flightList = [{
             airline: 'HK',
@@ -77,20 +73,24 @@ export default function Demo(props) {
             name: 'Hong Kong airline'
         },
         {
-            airline: 'HK',
+            airline: 'HK1',
             stop: 2,
             name: 'Hong Kong airline'
         }];
         actions.initFlights(flightList);
     }, [actions]);
+    const setCountHandler = () => {
+        setCount(11);
+    }
+    const pages1 = useMemo(() => pages, [pages]);
     return (
         <div className="demo">
-            <header className="title">组件</header>
+            <header className="title" onClick={setCountHandler}>组件</header>
             <LoadingBar />
             {/* <TabContext.Provider value="concrete data"> */}
             <Tab>
                 {/* {Tab暴露出children供不同父组件自定义} */}
-                {pages.map((page, index)=>
+                {pages1.map((page, index)=>
                     <div key={index} name={page.title}>
                         {page.content.map((item, index)=>
                             <div key={index} className="item">
@@ -98,6 +98,7 @@ export default function Demo(props) {
                                 {item.compenent}
                             </div>
                         )}
+                        <Input key={index} page={page} />
                     </div>
                 )}
             </Tab>

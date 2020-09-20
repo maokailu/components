@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 
 import './style.scss';
-export default function LoadingBar(props) {
+export default React.memo(function LoadingBar(props) {
     const [isFixed, useFixed] = useState(false);
     // 进度条触顶后固定在顶部
     useEffect(() => {
@@ -17,6 +17,7 @@ export default function LoadingBar(props) {
         };
         // class
     }, []);
+    console.log('loading');
     // 滚动到进度条位置时，就固定在顶部
     return (
         <div id="progress-bar"
@@ -26,4 +27,4 @@ export default function LoadingBar(props) {
             })}>
         </div>
     );
-}
+});

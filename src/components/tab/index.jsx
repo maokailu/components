@@ -23,6 +23,7 @@ export default function Tab(props) {
         useCurrent(index);
         // flipsnap.moveToPoint(index);
     };
+    console.log('tab');
     return (
         // <TabContext.Comsumer >
         <div className="tab">

@@ -8,7 +8,6 @@ export const createFlights = createSelector(
     (
         flights,
     ) => {
-        console.log('reslect', flights);
         return flights;
     }
 );
